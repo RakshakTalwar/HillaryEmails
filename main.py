@@ -56,6 +56,7 @@ km.fit(word_bag)
 
 # store the clusters in a way which is relatable with the original database
 clusters = defaultdict(list)
-pdb.set_trace()
 for o,i in enumerate(km.labels_):
     clusters[i].append(ids[o])
+
+print clusters
