@@ -53,14 +53,12 @@ grid_search.fit(rev_X_train, rev_y_train)
 
 emails = [] # a list of dicts, each contains an email string, Mongo ObjectId, and predicted classification score
 for email in mon_col.find({}, {'RawText' : 1, '_id' : 1}):
-    pdb.set_trace()
     classification = grid_search.predict([email['RawText']])
     emails.append( { 'text' : email['RawText'], '_id' : email['_id'], 'classification' : classification } )
 
 # update the mongo collection
 for email_dict in emails:
-    pdb.set_trace()
-    mon_col.update({"_id" : email_dict['_id']}, {"$set" : {"classification" : email_dict['classification']}})
+    mon_col.update({"_id" : email_dict['_id']}, {"$set" : {"classification" : int(email_dict['classification'])}})
 
 # TASK: Predict the outcome on the testing set and store it in a variable
 # named y_predicted
