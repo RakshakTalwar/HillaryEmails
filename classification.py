@@ -1,3 +1,9 @@
+"""
+Copyright (c) 2015
+Authors: Majid Latif and Rakshak Talwar
+
+Cluster Hillary's emails
+"""
 
 import csv
 import json
@@ -13,11 +19,9 @@ from sklearn.grid_search import GridSearchCV
 from sklearn.datasets import load_files
 from sklearn.cross_validation import train_test_split
 from sklearn import metrics
+from pymongo import MongoClient
 
-print 'test1'
-#from pymongo import Mongo
 if __name__ == "__main__":
-
 
   movie_reviews_data_folder = 'txt_sentoken'
   dataset = load_files(movie_reviews_data_folder, shuffle=False)
@@ -66,7 +70,7 @@ if __name__ == "__main__":
 #
 #csvfile = open('Emails.csv')
 #reader = csv.DictReader( csvfile )
-#mongo_client=MongoClient() 
+#mongo_client=MongoClient()
 #db=mongo_client.october_mug_talk
 #db.segment.drop()
 #header = ["Id", "DocNumber", "MetadataSubject", "MetadataTo", "MetadataFrom", "SenderPersonId", "MetadataDateSent", "MetadataDateReleased", "MetadataPdfLink", "MetadataCaseNumber", "MetadataDocumentClass", "ExtractedSubject", "ExtractedTo", "ExtractedFrom", "ExtractedCc", "ExtractedDateSent", "ExtractedCaseNumber", "ExtractedDocNumber", "ExtractedDateReleased", "ExtractedReleaseInPartOrFull", "ExtractedBodyText", "RawText"];
