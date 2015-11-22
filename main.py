@@ -13,7 +13,7 @@ import nltk.stem
 import pdb
 
 ### begin global instantiations
-
+english_stemmer = nltk.stem.SnowballStemmer('english')
 # create a class for the TfidfVectorizer to incorporate stemming
 class StemmedTfidfVectorizer(TfidfVectorizer):
     def build_analyzer(self):
@@ -45,7 +45,8 @@ for email in mon_col.find({}, {'RawText' : 1, '_id' : 1}):
     all_emails.append({'text' : email['RawText'], '_id' : email['_id']})
 
 # create a bag of words
-word_bag = get_word_bag(all_emails)
+word_bag_with_urls = get_word_bag(all_emails)
+word_bag, urls = word_bag_with_urls['bag_of_words'], word_bag_with_urls['urls']
 
 # create the model
 n_clusters = 3
