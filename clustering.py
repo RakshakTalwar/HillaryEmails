@@ -56,7 +56,7 @@ word_bag_with_ids = get_word_bag(all_emails)
 word_bag, ids = word_bag_with_ids['bag_of_words'], word_bag_with_ids['ids']
 
 # create the model
-n_clusters = 5
+n_clusters = 8
 km = KMeans(n_clusters=n_clusters, init='k-means++', n_init=1, verbose=1)
 # fit the model
 km.fit(word_bag)
