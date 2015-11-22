@@ -45,8 +45,8 @@ for email in mon_col.find({}, {'RawText' : 1, '_id' : 1}):
     all_emails.append({'text' : email['RawText'], '_id' : email['_id']})
 
 # create a bag of words
-word_bag_with_urls = get_word_bag(all_emails)
-word_bag, urls = word_bag_with_urls['bag_of_words'], word_bag_with_urls['urls']
+word_bag_with_ids = get_word_bag(all_emails)
+word_bag, ids = word_bag_with_ids['bag_of_words'], word_bag_with_ids['ids']
 
 # create the model
 n_clusters = 3
