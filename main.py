@@ -5,8 +5,10 @@ Author: Rakshak Talwar
 Cluster Hillary's emails
 """
 
-from sklearn.feature_extraction.text import TfidfVectorizer
 import pymongo
+from collections import defaultdict
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.cluster import KMeans
 import nltk.stem
 import pdb
 
@@ -37,6 +39,22 @@ mon_col = pymongo.MongoClient('localhost', 27017)['hillary']['emails']
 
 ### end global instantiations
 
+# grab data from Mongo
 all_emails = [] # list will contain dicts with each dict containing the raw text and the Mongo ObjectId
 for email in mon_col.find({}, {'RawText' : 1, '_id' : 1}):
     all_emails.append({'text' : email['RawText'], '_id' : email['_id']})
+
+# create a bag of words
+word_bag = get_word_bag(all_emails)
+
+# create the model
+n_clusters = 3
+km = KMeans(n_clusters=n_clusters, init='k-means++', n_init=1, verbose=1)
+# fit the model
+km.fit(word_bag)
+
+# store the clusters in a way which is relatable with the original database
+clusters = defaultdict(list)
+pdb.set_trace()
+for o,i in enumerate(km.labels_):
+    clusters[i].append(' ')
