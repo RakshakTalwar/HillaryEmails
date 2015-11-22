@@ -1,3 +1,7 @@
+//Copyright (c) 2015 Victor Graf
+//Author: Victor Graf
+//Hillary's Emails Web Client
+
 angular.module('app.hillary.emails', ['ngAnimate', 'ui.bootstrap']);
 angular.module('app.hillary.emails').controller('EmailController', function ($scope, $window, $http) {
   
