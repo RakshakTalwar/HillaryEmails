@@ -66,9 +66,7 @@ clusters = defaultdict(list)
 for o,i in enumerate(km.labels_):
     clusters[i].append(ids[o])
 
-pdb.set_trace()
-
 # store the cluster names in the mongo documents
 for cluster in clusters:
-    for id in cluster:
-        mon_col.update({'_id' : id}, {'$set' : {'cluster' : cluster}})
+    for _id in clusters[cluster]:
+        mon_col.update({'_id' : _id}, {'$set' : {'cluster' : int(cluster)}})
