@@ -1,8 +1,7 @@
-"""
-Copyright (c) 2015 Victor Graf
-Author: Victor Graf
-Serve Hillary's Emails Web App
-"""
+# Copyright (c) 2015 Victor Graf
+# Author: Victor Graf
+# Serve Hillary's Emails Web App
+
 
 
 from flask import Flask, request, send_from_directory, jsonify
