@@ -35,7 +35,6 @@ rev_dataset = load_files(movie_reviews_data_folder, shuffle=False)
 
 # split the movie reviews dataset into a train and test set
 rev_X_train, rev_X_test, rev_y_train, rev_y_test = train_test_split(rev_dataset.data, rev_dataset.target, test_size=0.25, random_state=None)
-pdb.set_trace()
 
 pipeline = Pipeline( [ ('vect', StemmedTfidfVectorizer(min_df=1, stop_words = 'english')), ('clf', LinearSVC(C=1000)) ] )
 
@@ -55,7 +54,7 @@ grid_search.fit(rev_X_train, rev_y_train)
 emails = [] # a list of dicts, each contains an email string, Mongo ObjectId, and predicted classification score
 for email in mon_col.find({}, {'RawText' : 1, '_id' : 1}):
     pdb.set_trace()
-    classification = grid_search.predict(email['RawText'])
+    classification = grid_search.predict([email['RawText']])
     emails.append( { 'text' : email['RawText'], '_id' : email['_id'], 'classification' : classification } )
 
 # update the mongo collection
