@@ -58,4 +58,4 @@ km.fit(word_bag)
 clusters = defaultdict(list)
 pdb.set_trace()
 for o,i in enumerate(km.labels_):
-    clusters[i].append(' ')
+    clusters[i].append(ids[o])
