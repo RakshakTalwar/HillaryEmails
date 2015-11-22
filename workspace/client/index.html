@@ -1,0 +1,103 @@
+<!doctype html>
+<html ng-app="app.hillary.emails">
+
+<head>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+  <script src="controller.js"></script>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div ng-controller="EmailController">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" ng-click="selectCluster('')">Hillary's Emails</a>
+        </div>
+        <ul class="nav navbar-nav nav-tabs">
+          <li ng-class="{'active': cluster == '0'}"><a href="#" ng-click="selectCluster('0')">Cluster 1</a></li>
+          <li ng-class="{'active': cluster == '1'}"><a href="#" ng-click="selectCluster('1')">Cluster 2</a></li>
+		  <li ng-class="{'active': cluster == '2'}"><a href="#" ng-click="selectCluster('2')">Cluster 3</a></li>
+		  <li ng-class="{'active': cluster == '3'}"><a href="#" ng-click="selectCluster('3')">Cluster 4</a></li>
+		  <li ng-class="{'active': cluster == '4'}"><a href="#" ng-click="selectCluster('4')">Cluster 5</a></li>
+		  <li ng-class="{'active': cluster == '5'}"><a href="#" ng-click="selectCluster('5')">Cluster 6</a></li>
+		  <li ng-class="{'active': cluster == '6'}"><a href="#" ng-click="selectCluster('6')">Cluster 7</a></li>
+		  <li ng-class="{'active': cluster == '7'}"><a href="#" ng-click="selectCluster('7')">Cluster 8</a></li>
+        </ul>
+      </div>
+    </nav>
+	<div class="hillary-email" ng-repeat="email in displayEmails">
+	  <div class="divider"></div>
+	  <img class="hillary-face" ng-src="{{getImage(email.classification, $index)}}" alt="Description" />
+	  <div class="panel panel-primary hillary-text">
+		<div class="panel-heading">
+		  <h3 class="panel-title">{{email.ExtractedSubject || "No subject"}}</h3>
+		</div>
+		<div class="panel-body hillary-email-content">{{extractContent(email)}}</div>
+	  </div>
+	</div>
+	<div class="divider"></div>
+	<nav>
+	  <ul class="pagination">
+		<li ng-click="setPage(page-1)">
+		  <a href="#" aria-label="Previous">
+			<span aria-hidden="true">&laquo;</span>
+		  </a>
+		</li>
+		<li ng-repeat="pg in pages" ng-class="{'active': page == pg}" ><a href="#" ng-click="setPage(pg)">{{pg}}</a></li>
+		<li ng-click="setPage(page+1)">
+		  <a href="#" aria-label="Next">
+			<span aria-hidden="true">&raquo;</span>
+		  </a>
+		</li>
+	  </ul>
+	</nav>
+  </div>
+  <style type="text/css">
+    .hillary-face {
+      float: left;
+      width: calc(25% - 8px);
+      margin-left: 8px;
+    }
+    
+    .hillary-text {
+      display: inline-block;
+      width: calc(75% - 16px);
+      float: right;
+      margin-right: 8px;
+    }
+    
+    .hillary-email {
+      display: table;
+      width: 100%;
+    }
+    
+    .divider {
+      width: 98%;
+      height: 1px;
+      display: block;
+      background: #CCCCCC;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    body {
+      padding-top: 70px;
+    }
+	
+	.more-btn {
+		margin-bottom: 20px;
+	}
+	
+	.hillary-email-content {
+		white-space: pre-wrap;
+	}
+  </style>
+</body>
+
+</html>
